@@ -22,7 +22,7 @@ h1 {
     text-align: center;
 }
 
-p1 {
+.p1 {
     font-size: 2rem;
     text-align: center;
 }
@@ -56,3 +56,13 @@ p1 {
     align-items: center;
 }
 
+.btn-primary1 {
+    background-color: #F33A3A;
+    margin: 10px;
+    padding: 20px;
+    color: white;
+    border-radius: 50px;
+    border: none;
+    font-size: large;
+    box-shadow: #F33A3A;
+}

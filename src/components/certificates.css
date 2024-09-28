@@ -1,0 +1,55 @@
+/* src/components/certificates.css */
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8); 
+    z-index: 2000;
+    backdrop-filter: blur(10px);
+}
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    color: black;
+}
+
+/* src/components/certificates.css */
+.nav-icon {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    color: white;
+    background-color: #F33A3A;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-icon:hover {
+    background-color: white;
+    color: black;
+    border-radius: 16px;
+}
+
+.nav-icon:active {
+    background-color: rgb(236, 75, 75);
+    color: black;
+    border-radius: 16px;
+}
+
+
+
