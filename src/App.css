@@ -18,6 +18,7 @@ body {
   align-items: center;
   margin: 20px;
   height: 400px;
+  border: 2px solid black;
   padding: 0 10px;
   position: absolute;
   right: 20px;
@@ -28,7 +29,7 @@ body {
 }
 
 .Nav:hover {
-  height: 700px;
+  height: 600px;
   transition: ease-in-out 0.5s;
 
 }
@@ -36,14 +37,20 @@ body {
 
 @media screen and (max-width: 768px) {
   .Nav {
-    bottom: 20px;
-    width: 80%;
-    height: auto;
+    width: 90%;
     flex-direction: row;
+    position: sticky;
+    height: 60px;
   }
 
   .Nav:hover {
-    height: 50px;
+    height: 60px;
   }
+
+  .content-box {
+    top: 50px;
+    overflow: scroll;
+  }
+
   
 }

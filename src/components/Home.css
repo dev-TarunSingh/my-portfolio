@@ -5,17 +5,25 @@
   flex-direction: row-reverse;
   justify-content: space-around;
   align-items: center;
-  height: 100vh;
   background-color: black;
   color: white;
   width: 90%;
   padding: 20px;
 }
 
+
+
 .My-Name {
   font-size: 6rem;
 }
 
+.content-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
 
 
 @media screen and (max-width: 768px) {
