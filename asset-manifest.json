@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/my-portfolio/static/css/main.2700c418.css",
-    "main.js": "/my-portfolio/static/js/main.15fc073a.js",
+    "main.css": "/my-portfolio/static/css/main.b93bc192.css",
+    "main.js": "/my-portfolio/static/js/main.c8d2ea8d.js",
     "static/js/787.128fc6e9.chunk.js": "/my-portfolio/static/js/787.128fc6e9.chunk.js",
     "static/media/mypic.png": "/my-portfolio/static/media/mypic.92ba6d653ceecc9575e5.png",
     "static/media/DellCerti.png": "/my-portfolio/static/media/DellCerti.c64e3bedfe914f694fcf.png",
@@ -18,12 +18,12 @@
     "index.html": "/my-portfolio/index.html",
     "static/media/next.svg": "/my-portfolio/static/media/next.5735743d4edb127b53f51d7a9fbe69c5.svg",
     "static/media/prev.svg": "/my-portfolio/static/media/prev.af9bbea7971e10a267c158ed63ca82db.svg",
-    "main.2700c418.css.map": "/my-portfolio/static/css/main.2700c418.css.map",
-    "main.15fc073a.js.map": "/my-portfolio/static/js/main.15fc073a.js.map",
+    "main.b93bc192.css.map": "/my-portfolio/static/css/main.b93bc192.css.map",
+    "main.c8d2ea8d.js.map": "/my-portfolio/static/js/main.c8d2ea8d.js.map",
     "787.128fc6e9.chunk.js.map": "/my-portfolio/static/js/787.128fc6e9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2700c418.css",
-    "static/js/main.15fc073a.js"
+    "static/css/main.b93bc192.css",
+    "static/js/main.c8d2ea8d.js"
   ]
 }
