@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/my-portfolio/static/css/main.bb8a411d.css",
-    "main.js": "/my-portfolio/static/js/main.b87bf40d.js",
+    "main.js": "/my-portfolio/static/js/main.97032156.js",
     "static/js/787.128fc6e9.chunk.js": "/my-portfolio/static/js/787.128fc6e9.chunk.js",
     "static/media/mypic.png": "/my-portfolio/static/media/mypic.92ba6d653ceecc9575e5.png",
     "static/media/DellCerti.png": "/my-portfolio/static/media/DellCerti.c64e3bedfe914f694fcf.png",
@@ -19,11 +19,11 @@
     "static/media/next.svg": "/my-portfolio/static/media/next.5735743d4edb127b53f51d7a9fbe69c5.svg",
     "static/media/prev.svg": "/my-portfolio/static/media/prev.af9bbea7971e10a267c158ed63ca82db.svg",
     "main.bb8a411d.css.map": "/my-portfolio/static/css/main.bb8a411d.css.map",
-    "main.b87bf40d.js.map": "/my-portfolio/static/js/main.b87bf40d.js.map",
+    "main.97032156.js.map": "/my-portfolio/static/js/main.97032156.js.map",
     "787.128fc6e9.chunk.js.map": "/my-portfolio/static/js/787.128fc6e9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bb8a411d.css",
-    "static/js/main.b87bf40d.js"
+    "static/js/main.97032156.js"
   ]
 }
