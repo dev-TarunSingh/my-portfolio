@@ -4,14 +4,15 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
+  flex-wrap: wrap;
   align-items: center;
+  align-content: center;
   background-color: black;
+  height: 100vh;
   color: white;
   width: 90%;
   padding: 20px;
 }
-
-
 
 .My-Name {
   font-size: 6rem;
@@ -25,6 +26,11 @@
   margin: 10px;
 }
 
+.intro {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
 
 @media screen and (max-width: 768px) {
   .Home-container {
@@ -34,12 +40,17 @@
     top: 0;
   }
 
-  
-
+  .My-DP {
+    padding: 40px;
+    width: 300;
+    height: 300;
+  }
 
   .My-Name {
     font-size: 3rem;
   }
 
+  .intro {
+    font-size: 0.7rem;
+  }
 }
-

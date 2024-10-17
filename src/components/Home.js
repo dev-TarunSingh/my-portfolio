@@ -10,6 +10,7 @@ function Home() {
         <div className="image">
           <img
             src={MyImg}
+            className="My-DP"
             style={{ width: 350, height: 350, borderRadius: 500 }}
             alt="My DP"
           />
@@ -41,7 +42,7 @@ function Home() {
           />
           </div>
         </div>
-      </div>
+        </div>
     </>
   );
 }

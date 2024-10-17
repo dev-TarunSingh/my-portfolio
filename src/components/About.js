@@ -36,7 +36,7 @@ function About() {
             ))}
           </div>
         </div>
-        <h1>Why am i a best fir fot you?</h1>
+        <h1>Why am i a best fit for you?</h1>
         <button onClick={() => setShowCerti(!showCerti)} className="btn-primary1">Check</button>
         {showCerti && <Certificates setShowCerti={setShowCerti} showCerti={showCerti}/>}
       </div>

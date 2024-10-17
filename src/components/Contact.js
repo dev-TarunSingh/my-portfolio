@@ -45,6 +45,7 @@ export default function Contact() {
 
   return (
     <div className="contact-container">
+      <div className="contact-form">
       <h1>Contact Me</h1>
       <div className="form-container">
         <div className="contact-info">
@@ -104,6 +105,7 @@ export default function Contact() {
           </button>
         </form>
       </div>
+        </div>
     </div>
   );
 }

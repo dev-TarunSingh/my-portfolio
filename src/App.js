@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Home from "./components/Home";
 import About from "./components/About";
 import Projects from "./components/Projects";
-import Contact from "./components/Contact"
+import Contact from "./components/Contact";
 
 // icons
 import homeicon from "./components/media/homeicon.png";
@@ -36,48 +36,51 @@ function App() {
   }
 
   return (
-    <>
-      <div className="Nav">
-        <img
-          src={homeicon}
-          onClick={() => changePage("home")}
-          style={{ width: 40, height: 40, margin: 5 }}
-          alt="Home Icon"
-        />
-        <img
-          src={abouticon}
-          onClick={() => changePage("about")}
-          style={{ width: 40, height: 40, margin: 5 }}
-          alt="About Icon"
-        />
-        <img
-          src={projectsicon}
-          onClick={() => changePage("projects")}
-          style={{ width: 40, height: 40, margin: 5 }}
-          alt="Projects Icon"
-        />
-        <img
-          src={contacticon}
-          onClick={() => changePage("contact")}
-          style={{ width: 40, height: 40, margin: 5 }}
-          alt="Contact Icon"
-        />
-        <a
-          href="/resume.pdf"
-          download
-          className="resume-button"
-          style={{ width: 40, height: 40, margin: 5 }}
-        >
+    <div className="All">
+      <div className="navbar">
+        <div className="Nav">
           <img
-            src={download}
-            alt="Resume Icon"
-            style={{ width: 40, height: 40 }}
+            src={homeicon}
+            onClick={() => changePage("home")}
+            style={{ width: 40, height: 40, margin: 5 }}
+            alt="Home Icon"
           />
-        </a>
+          <img
+            src={abouticon}
+            onClick={() => changePage("about")}
+            style={{ width: 40, height: 40, margin: 5 }}
+            alt="About Icon"
+          />
+          <img
+            src={projectsicon}
+            onClick={() => changePage("projects")}
+            style={{ width: 40, height: 40, margin: 5 }}
+            alt="Projects Icon"
+          />
+          <img
+            src={contacticon}
+            onClick={() => changePage("contact")}
+            style={{ width: 40, height: 40, margin: 5 }}
+            alt="Contact Icon"
+          />
+          <a
+            href="https://drive.google.com/file/d/1Cke8woK578RXOeZfIY4UWgETt1UCk02x/view?usp=sharing"
+            className="resume-button"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ width: 40, height: 40, margin: 5 }}
+          >
+            <img
+              src={download}
+              alt="Resume Icon"
+              style={{ width: 40, height: 40 }}
+            />
+          </a>
+        </div>
       </div>
 
       <div className="content-box">{content}</div>
-    </>
+    </div>
   );
 }
 
