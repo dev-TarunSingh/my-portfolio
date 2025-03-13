@@ -46,7 +46,7 @@ const projects = [
 
 function Projects() {
   return (
-    <div className="p-5 bg-gray-900 text-white">
+    <div className="p-5 pt-20 bg-gray-900 text-white">
       <h2 className="text-4xl font-bold text-center mb-10">Projects</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {projects.map((project, index) => (

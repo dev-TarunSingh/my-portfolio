@@ -1,14 +1,15 @@
 import React from "react";
-import profilePic from "../../public/Mypic.jpg";
+import profilePic from "../Mypic.jpg";
 import { Typewriter } from "react-simple-typewriter";
+import resumePdf from "../assets/TarunResume2025.pdf";
 
 function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white text-center">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white text-center p-5">
       <img
         src={profilePic}
         alt="Profile"
-        className="w-32 h-32 rounded-full mb-5"
+        className="w-80 h-80 rounded-full mb-5"
       />
       <h1 className="text-5xl font-bold mb-5">Hi, I'm Tarun.</h1>
       <p className="text-xl mb-5">A passionate developer.</p>
@@ -18,7 +19,7 @@ function Home() {
         structures, algorithms, and database management, with experience in
         delivering end-to-end projects.
       </p>
-      <div className="text-2xl">
+      <div className="text-2xl mb-5">
         <Typewriter
           loop={false}
           words={[
@@ -29,6 +30,13 @@ function Home() {
           ]}
         />
       </div>
+      <a
+        href={resumePdf}
+        download="Tarun_Resume.pdf"
+        className="px-6 py-3 bg-blue-600 text-white font-bold rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
+      >
+        Download Resume
+      </a>
     </div>
   );
 }
