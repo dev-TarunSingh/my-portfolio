@@ -1,16 +1,69 @@
-import React from 'react';
+import React, { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 function Contact() {
+  const form = useRef();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+    app: "ActLocal",
+  });
+  const [sending, setSending] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setSending(true);
+
+    const serviceId = import.meta.env.VITE_SERVICEID;
+    const templateId = import.meta.env.VITE_TEMPLATEID;
+    const publicKey = import.meta.env.VITE_PUBLICKEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error("Missing EmailJS environment variables.");
+      alert("Failed to send message. Please contact support.");
+      setSending(false);
+      return;
+    }
+
+    emailjs
+      .sendForm(serviceId, templateId, form.current, publicKey)
+      .then(
+        () => {
+          alert("Message sent successfully!");
+          setFormData({ name: "", email: "", message: "" });
+          setSending(false);
+        },
+        (error) => {
+          console.error("FAILED...", error.text);
+          alert("Failed to send message. Please try again.");
+          setSending(false);
+        }
+      );
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-5">
       <h2 className="text-4xl font-bold mb-10">Contact Me</h2>
-      <form className="w-full max-w-lg bg-gray-800 p-8 rounded-lg shadow-lg">
+      <form
+        ref={form}
+        onSubmit={sendEmail}
+        className="w-full max-w-lg bg-gray-800 p-8 rounded-lg shadow-lg"
+      >
         <div className="mb-6">
           <label className="block text-sm font-bold mb-2" htmlFor="name">
             Name
           </label>
           <input
-            className="w-full px-3 py-2 text-gray-900 rounded-lg focus:outline-none focus:shadow-outline"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 bg-white text-black rounded-lg focus:outline-none focus:shadow-outline"
             type="text"
             id="name"
             placeholder="Your Name"
@@ -21,10 +74,13 @@ function Contact() {
             Email
           </label>
           <input
-            className="w-full px-3 py-2 text-gray-900 rounded-lg focus:outline-none focus:shadow-outline"
+            className="w-full px-3 py-2 bg-white text-black rounded-lg focus:outline-none focus:shadow-outline"
             type="email"
             id="email"
+            value={formData.email}
+            onChange={handleChange}
             placeholder="Your Email"
+            required
           />
         </div>
         <div className="mb-6">
@@ -32,7 +88,10 @@ function Contact() {
             Message
           </label>
           <textarea
-            className="w-full px-3 py-2 text-gray-900 rounded-lg focus:outline-none focus:shadow-outline"
+            value={formData.message}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 bg-white text-black rounded-lg focus:outline-none focus:shadow-outline"
             id="message"
             placeholder="Your Message"
             rows="5"
@@ -40,10 +99,11 @@ function Contact() {
         </div>
         <div className="flex items-center justify-between">
           <button
+            disabled={sending}
             className="px-4 py-2 bg-blue-500 rounded-full text-white hover:bg-blue-700 transition duration-300"
             type="submit"
           >
-            Send Message
+            {sending ? "Sending..." : "Send Message"}
           </button>
         </div>
       </form>

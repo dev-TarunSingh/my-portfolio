@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@mui/icons-material": "^6.4.6",
     "@tailwindcss/vite": "^4.0.9",
+    "dotenv": "^16.5.0",
+    "emailjs": "^4.0.3",
     "headlessui": "^0.0.0",
     "lucide-react": "^0.479.0",
     "react": "^19.0.0",
