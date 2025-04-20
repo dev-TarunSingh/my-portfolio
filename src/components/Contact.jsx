@@ -77,6 +77,7 @@ function Contact() {
             className="w-full px-3 py-2 bg-white text-black rounded-lg focus:outline-none focus:shadow-outline"
             type="email"
             id="email"
+            name="email"
             value={formData.email}
             onChange={handleChange}
             placeholder="Your Email"
@@ -91,6 +92,7 @@ function Contact() {
             value={formData.message}
             onChange={handleChange}
             required
+            name="message"
             className="w-full px-3 py-2 bg-white text-black rounded-lg focus:outline-none focus:shadow-outline"
             id="message"
             placeholder="Your Message"
