@@ -52,7 +52,7 @@ function Contact() {
       <form
         ref={form}
         onSubmit={sendEmail}
-        className="w-full max-w-lg bg-gray-800 p-8 rounded-lg shadow-lg"
+        className="w-full max-w-lg bg-gray-800 p-8 rounded-3xl shadow-lg"
       >
         <div className="mb-6">
           <label className="block text-sm font-bold mb-2" htmlFor="name">
