@@ -1,5 +1,5 @@
 import React from 'react';
-// import ActlocalImage from '../assets/actlocal.jpg';
+import ActlocalImage from '../assets/actlocal.png';
 // import frewImage from '../assets/frew.jpg';
 import shorturlImage from '../assets/shorturl.png';
 import pdfCrackerImage from '../assets/pdf-cracker.png';
@@ -18,7 +18,7 @@ const projects = [
       'Dashboard for providers to manage services'
     ],
     technologies: 'React Native, NodeJS, ExpressJS, MongoDB (GeoJSON)',
-    image: 'https://imgur.com/Rhxjmjd.png', // Replace with actual image or local import if you have one
+    image: ActlocalImage, // Replace with actual image or local import if you have one
     link: 'https://actlocal.live' // Replace with your actual GitHub or live demo link
   },
   {
@@ -30,7 +30,8 @@ const projects = [
       'NodeJs server'
     ],
     technologies: 'ReactNative, NodeJS, MongoDB, ExpressJS',
-    image: "https://imgur.com/HLTDtBf.png"
+    image: "https://imgur.com/HLTDtBf.png",
+    link: "https://github.com/dev-TarunSingh/Frew-Android"
   },
   {
     title: 'Shorturl',
@@ -39,13 +40,15 @@ const projects = [
       'Converts URL in short and also redirects'
     ],
     technologies: 'ReactJS, NodeJS, MongoDB, ExpressJS',
-    image: shorturlImage
+    image: shorturlImage,
+    link: 'https://github.com/dev-TarunSingh/Shorturl_MERN'
   },
   {
     title: 'Python PDF Password Cracker',
     description: 'The script generates all possible passwords and attempts to decrypt a given PDF file using these passwords.',
     technologies: 'Python, PyPDF, numpy',
-    image: pdfCrackerImage
+    image: pdfCrackerImage,
+    link: 'https://github.com/dev-TarunSingh/Python'
   },
   {
     title: 'Python Voice Assistant',
@@ -54,13 +57,15 @@ const projects = [
       'Tracking world-wide cases using google maps and live API stats and datasets'
     ],
     technologies: 'Python, speech recognition, pyttsx3',
-    image: voiceAssistantImage
+    image: voiceAssistantImage,
+    link: 'https://github.com/dev-TarunSingh/Python'
   },
   {
     title: 'React Dice Game',
     description: 'A Basic Dice Game. You need to select any number. If the selected number is equal to the dice number, you will get the same point as the dice.',
     technologies: 'ReactJS',
-    image: diceGameImage
+    image: diceGameImage,
+    link: 'https://github.com/dev-TarunSingh/React-JS/tree/master/dice'
   }
 ];
 
