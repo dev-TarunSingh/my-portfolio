@@ -1,6 +1,5 @@
 // src/components/HireMe.js
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import WebGig from '../assets/WebGig.png'; // Ensure the path is correct
 import MobileGig from '../assets/ReactGig.png'; // Ensure the path is correct
 import AddSer from '../assets/AddSer.png'; // Ensure the path is correct
@@ -29,11 +28,6 @@ const gigs = [
 function HireMe() {
   return (
     <>
-    <Helmet>
-  <title>Hire Me | Tarun Singh Chauhan - Available for Work</title>
-  <meta name="description" content="Looking to hire a dedicated full-stack web developer? Let's work together on your next big idea!" />
-  <link rel="canonical" href="https://taruncodes.tech/hireme" />
-</Helmet>
 
     
     <div className="p-5 pt-20 bg-gray-900 text-white min-h-screen">

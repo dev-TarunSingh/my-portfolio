@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { Helmet } from "react-helmet";
 
 function Contact() {
   const form = useRef();
@@ -47,14 +46,6 @@ function Contact() {
 
   return (
     <>
-      <Helmet>
-        <title>Contact | Tarun Singh Chauhan - Let's Connect</title>
-        <meta
-          name="description"
-          content="Get in touch for freelance projects, full-time opportunities, or tech collaborations."
-        />
-        <link rel="canonical" href="https://taruncodes.tech/contact" />
-      </Helmet>
 
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-5">
         <h2 className="text-4xl font-bold mb-10">Contact Me</h2>

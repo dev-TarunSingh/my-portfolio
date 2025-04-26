@@ -1,17 +1,8 @@
 import React from "react";
-import { Helmet } from "react-helmet"; 
 
 function About() {
   return (
     <>
-      <Helmet>
-        <title>About | Tarun Singh Chauhan - Web Developer</title>
-        <meta
-          name="description"
-          content="Learn more about me — a driven web developer skilled in ReactJS, NodeJS, and building amazing digital experiences."
-        />
-        <link rel="canonical" href="https://taruncodes.tech/about" />
-      </Helmet>
 
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-5 pt-0 md:pt-5">
         <h2 className="text-4xl font-bold mb-10 mt-20 text-bright-blue">

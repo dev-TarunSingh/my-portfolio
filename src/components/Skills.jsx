@@ -1,14 +1,8 @@
 import React from 'react';
-import { Helmet } from 'react-helmet'; 
 
 function Skills() {
   return (
     <>
-    <Helmet>
-  <title>Skills | Tarun Singh Chauhan - Full Stack Developer</title>
-  <meta name="description" content="Skills include React, Node, MongoDB, JavaScript, Python, C++, and full-stack development." />
-  <link rel="canonical" href="https://taruncodes.tech/skills" />
-</Helmet>
 
     
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-5 pt-20">

@@ -5,7 +5,6 @@ import shorturlImage from "../assets/shorturl.png";
 import pdfCrackerImage from "../assets/pdf-cracker.png";
 import voiceAssistantImage from "../assets/voice-assistant.png";
 import diceGameImage from "../assets/dice-game.png";
-import { Helmet } from "react-helmet"; 
 
 const projects = [
   {
@@ -72,14 +71,6 @@ const projects = [
 function Projects() {
   return (
     <>
-      <Helmet>
-        <title>Projects | Tarun Singh Chauhan - Web Developer</title>
-        <meta
-          name="description"
-          content="Browse my latest web development projects, apps, and coding work built using React, MERN, and more."
-        />
-        <link rel="canonical" href="https://taruncodes.tech/projects" />
-      </Helmet>
 
       <div className="p-5 pt-20 bg-gray-900 text-white">
         <h2 className="text-4xl font-bold text-center mb-10">Projects</h2>
