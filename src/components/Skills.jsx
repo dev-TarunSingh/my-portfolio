@@ -1,7 +1,16 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async'; 
 
 function Skills() {
   return (
+    <>
+    <Helmet>
+  <title>Skills | Tarun Singh Chauhan - Full Stack Developer</title>
+  <meta name="description" content="Skills include React, Node, MongoDB, JavaScript, Python, C++, and full-stack development." />
+  <link rel="canonical" href="https://taruncodes.tech/skills" />
+</Helmet>
+
+    
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-5 pt-20">
       <h2 className="text-4xl font-bold mb-10 text-bright-blue">Technical Skills and Interests</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full max-w-4xl">
@@ -80,6 +89,7 @@ function Skills() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { Helmet } from "react-helmet-async";
 
 function Contact() {
   const form = useRef();
@@ -30,86 +31,95 @@ function Contact() {
       return;
     }
 
-    emailjs
-      .sendForm(serviceId, templateId, form.current, publicKey)
-      .then(
-        () => {
-          alert("Message sent successfully!");
-          setFormData({ name: "", email: "", message: "" });
-          setSending(false);
-        },
-        (error) => {
-          console.error("FAILED...", error.text);
-          alert("Failed to send message. Please try again.");
-          setSending(false);
-        }
-      );
+    emailjs.sendForm(serviceId, templateId, form.current, publicKey).then(
+      () => {
+        alert("Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" });
+        setSending(false);
+      },
+      (error) => {
+        console.error("FAILED...", error.text);
+        alert("Failed to send message. Please try again.");
+        setSending(false);
+      }
+    );
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-5">
-      <h2 className="text-4xl font-bold mb-10">Contact Me</h2>
-      <form
-        ref={form}
-        onSubmit={sendEmail}
-        className="w-full max-w-lg bg-gray-800 p-8 rounded-3xl shadow-lg"
-      >
-        <div className="mb-6">
-          <label className="block text-sm font-bold mb-2" htmlFor="name">
-            Name
-          </label>
-          <input
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 bg-white text-black rounded-lg focus:outline-none focus:shadow-outline"
-            type="text"
-            id="name"
-            placeholder="Your Name"
-          />
-        </div>
-        <div className="mb-6">
-          <label className="block text-sm font-bold mb-2" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="w-full px-3 py-2 bg-white text-black rounded-lg focus:outline-none focus:shadow-outline"
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Your Email"
-            required
-          />
-        </div>
-        <div className="mb-6">
-          <label className="block text-sm font-bold mb-2" htmlFor="message">
-            Message
-          </label>
-          <textarea
-            value={formData.message}
-            onChange={handleChange}
-            required
-            name="message"
-            className="w-full px-3 py-2 bg-white text-black rounded-lg focus:outline-none focus:shadow-outline"
-            id="message"
-            placeholder="Your Message"
-            rows="5"
-          ></textarea>
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            disabled={sending}
-            className="px-4 py-2 bg-blue-500 rounded-full text-white hover:bg-blue-700 transition duration-300"
-            type="submit"
-          >
-            {sending ? "Sending..." : "Send Message"}
-          </button>
-        </div>
-      </form>
-    </div>
+    <>
+      <Helmet>
+        <title>Contact | Tarun Singh Chauhan - Let's Connect</title>
+        <meta
+          name="description"
+          content="Get in touch for freelance projects, full-time opportunities, or tech collaborations."
+        />
+        <link rel="canonical" href="https://taruncodes.tech/contact" />
+      </Helmet>
+
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-5">
+        <h2 className="text-4xl font-bold mb-10">Contact Me</h2>
+        <form
+          ref={form}
+          onSubmit={sendEmail}
+          className="w-full max-w-lg bg-gray-800 p-8 rounded-3xl shadow-lg"
+        >
+          <div className="mb-6">
+            <label className="block text-sm font-bold mb-2" htmlFor="name">
+              Name
+            </label>
+            <input
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 bg-white text-black rounded-lg focus:outline-none focus:shadow-outline"
+              type="text"
+              id="name"
+              placeholder="Your Name"
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block text-sm font-bold mb-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="w-full px-3 py-2 bg-white text-black rounded-lg focus:outline-none focus:shadow-outline"
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Your Email"
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block text-sm font-bold mb-2" htmlFor="message">
+              Message
+            </label>
+            <textarea
+              value={formData.message}
+              onChange={handleChange}
+              required
+              name="message"
+              className="w-full px-3 py-2 bg-white text-black rounded-lg focus:outline-none focus:shadow-outline"
+              id="message"
+              placeholder="Your Message"
+              rows="5"
+            ></textarea>
+          </div>
+          <div className="flex items-center justify-between">
+            <button
+              disabled={sending}
+              className="px-4 py-2 bg-blue-500 rounded-full text-white hover:bg-blue-700 transition duration-300"
+              type="submit"
+            >
+              {sending ? "Sending..." : "Send Message"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
 
