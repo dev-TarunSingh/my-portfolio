@@ -5,7 +5,7 @@ import shorturlImage from "../assets/shorturl.png";
 import pdfCrackerImage from "../assets/pdf-cracker.png";
 import voiceAssistantImage from "../assets/voice-assistant.png";
 import diceGameImage from "../assets/dice-game.png";
-import { Helmet } from "react-helmet-async"; 
+import { Helmet } from "react-helmet"; 
 
 const projects = [
   {

@@ -1,6 +1,6 @@
 // src/components/HireMe.js
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 import WebGig from '../assets/WebGig.png'; // Ensure the path is correct
 import MobileGig from '../assets/reactGig.png'; // Ensure the path is correct
 import AddSer from '../assets/AddSer.png'; // Ensure the path is correct

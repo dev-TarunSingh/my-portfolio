@@ -2,7 +2,7 @@ import React from "react";
 import profilePic from "../Mypic.jpg";
 import { Typewriter } from "react-simple-typewriter";
 import resumePdf from "../assets/TarunResume2025.pdf";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 
 function Home() {
   return (
