@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: taruncodes
+    env: node
+    buildCommand: |
+      cd frontend && npm install && npm run build
+      cd ../server && npm install
+    startCommand: node index.js
+    rootDir: server
+    envVars:
+      - key: MONGO_URI
+        value: "mongodb+srv://tarunsinghchauhan75:tarun75actlocal1@cluster0.8oc13.mongodb.net/taruncodes?retryWrites=true&w=majority&appName=Cluster0"
+      - key: SECRET
+        value: MIIBOgIBAAJBAN8ytAYZSrGzRlNqxMXb6+nLsFZrPCHBprSmuCQZDmjiFB9iHZEC
+      - key: PORT
+        value: 3000
+      - key: VITE_SERVICEID
+        value: service_7ts2zz7
+      - key: VITE_TEMPLATEID
+        value: template_14sbnq8
+      - key: VITE_PUBLICKEY
+        value: 7QPb2cTUGl35adzMs
