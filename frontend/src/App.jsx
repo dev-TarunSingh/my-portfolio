@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-
+import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Projects from "./components/Projects";
@@ -38,7 +38,7 @@ function App() {
       case "about":
         return <About />;
       case "hireme":
-        return <HireMe />;
+        return <HireMe setActiveTab={setActiveTab} />;
       case "blogs":
         return <Blogs />;
       default:

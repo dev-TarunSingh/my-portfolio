@@ -1,6 +1,9 @@
 // middleware/auth.js
 import jwt from "jsonwebtoken";
-const SECRET = process.env.JWT_SECRET;
+import dotenv from "dotenv";
+dotenv.config();
+
+const SECRET = process.env.SECRET;
 
 export function authenticate(req, res, next) {
   const token = req.headers.authorization?.split(" ")[1]; // Bearer TOKEN

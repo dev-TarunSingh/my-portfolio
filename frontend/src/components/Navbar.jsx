@@ -25,7 +25,7 @@ function Navbar({ setActiveTab, activeTab }) {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white shadow-md z-50 px-4 py-3">
+    <nav className="fixed top-0 left-0 right-0 shadow-md z-50 px-4 py-3">
       {/* Logo + Hamburger */}
       <div
         className={`flex ${
@@ -58,8 +58,8 @@ function Navbar({ setActiveTab, activeTab }) {
                   onClick={() => setActiveTab(tab.key)}
                   className={`px-4 py-2 rounded-full font-medium transition ${
                     activeTab === tab.key
-                      ? "bg-gray-300 text-black"
-                      : "bg-white text-black hover:bg-gray-200"
+                      ? "bg-blue-600 text-white"
+                      : "bg-white text-black hover:bg-blue-200"
                   }`}
                 >
                   {tab.name}

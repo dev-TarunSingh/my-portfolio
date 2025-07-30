@@ -1,7 +1,8 @@
+// middlewares/log.js
 import useragent from "express-useragent";
-app.use(useragent.express());
+import mongoose from "mongoose";
 
-app.use((req, res, next) => {
+export function logVisitor(req, res, next) {
   const visit = {
     ip: req.ip,
     path: req.originalUrl,
@@ -9,7 +10,16 @@ app.use((req, res, next) => {
     os: req.useragent.os,
     time: new Date(),
   };
-  // Save to MongoDB
-  db.collection("visitors").insertOne(visit);
+
+  try {
+    const db = mongoose.connection.db;
+    // Optionally skip logging API routes
+    if (!req.originalUrl.startsWith("/api")) {
+      db.collection("visitors").insertOne(visit);
+    }
+  } catch (err) {
+    console.error("Visitor logging failed:", err);
+  }
+
   next();
-});
+}

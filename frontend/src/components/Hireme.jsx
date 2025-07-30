@@ -28,7 +28,7 @@ const gigs = [
   },
 ];
 
-function HireMe() {
+function HireMe({ setActiveTab }) {
   return (
     <>
       <div className="p-5 pt-20 text-black min-h-screen">
@@ -51,9 +51,16 @@ function HireMe() {
                 </div>
                 <h3 className="text-2xl font-bold mb-3">{gig.title}</h3>
                 <p className="mb-3">{gig.description}</p>
-                {gig.link && (
+                {gig.link === "/contact" ? (
+                  <button
+                    onClick={() => setActiveTab("contact")}
+                    className="mt-auto text-center inline-block rounded-3xl shadow-2xl bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 transition duration-300"
+                  >
+                    More Services
+                  </button>
+                ) : (
                   <a
-                    href={gig.link} // Corrected to gig.link
+                    href={gig.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-auto text-center inline-block rounded-3xl shadow-2xl bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 transition duration-300"

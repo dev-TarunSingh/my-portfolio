@@ -10,11 +10,13 @@ export default function AdminLogin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("/api/admin/login", {
+    const res = await fetch("http://localhost:3000/api/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
+
+    console.log("hogya wo toh");
 
     const data = await res.json();
     if (res.ok) {
