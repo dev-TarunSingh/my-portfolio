@@ -89,7 +89,7 @@ const AdminDashboard = () => {
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">
           Welcome, Admin 👋
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <DashboardCard
             title="Total Visitors"
             value={totalVisitors}
@@ -100,8 +100,16 @@ const AdminDashboard = () => {
             value={totalBlogs}
             onClick={() => navigate("/admin/blogs")}
           />
-          <DashboardCard title="Total Views" value={totalViews} />
-          <DashboardCard title="Total Likes" value={totalLikes} />
+          <DashboardCard
+            title="Total Views"
+            value={totalViews}
+            onClick={() => navigate("/admin/blogs")}
+          />
+          <DashboardCard
+            title="Total Likes"
+            value={totalLikes}
+            onClick={() => navigate("/admin/blogs")}
+          />
         </div>
       </main>
     </div>

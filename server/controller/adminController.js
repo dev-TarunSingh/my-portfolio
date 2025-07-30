@@ -60,3 +60,23 @@ export const showDashboard = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+
+export const visitorsPerDay = async (req, res) => {
+  try {
+    const visitors = await Visitor.aggregate([
+      {
+        $group: {
+          _id: {
+            $dateToString: { format: "%Y-%m-%d", date: "$time" },
+          },
+          count: { $sum: 1 },
+        },
+      },
+      { $sort: { _id: 1 } },
+    ]);
+    res.status(200).json({ success: true, data: visitors });
+  } catch (error) {
+    console.error("Visitors Per Day Error:", error);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
