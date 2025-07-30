@@ -1,5 +1,6 @@
+// middlewares/log.js
 import useragent from "express-useragent";
-import mongoose from "mongoose";
+import Visitor from "../models/Visitor.js";
 
 export function logVisitor(req, res, next) {
   const visit = {
@@ -10,23 +11,11 @@ export function logVisitor(req, res, next) {
     time: new Date(),
   };
 
-  try {
-    const db = mongoose.connection.db;
-
-    // Check if DB is ready
-    if (!db) {
-      console.warn("DB not ready, skipping visitor log.");
-      return next();
-    }
-
-    // Optionally skip logging API routes
-    if (!req.originalUrl.startsWith("/api")) {
-      db.collection("visitors").insertOne(visit).catch((err) => {
-        console.error("Failed to log visitor:", err);
-      });
-    }
-  } catch (err) {
-    console.error("Visitor logging failed:", err);
+  // Optionally skip API routes
+  if (!req.originalUrl.startsWith("/api")) {
+    Visitor.create(visit).catch((err) => {
+      console.error("Failed to log visitor:", err);
+    });
   }
 
   next();

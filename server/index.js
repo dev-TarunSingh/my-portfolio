@@ -16,11 +16,6 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
-app.use(express.json());
-app.use(useragent.express());
-app.use(logVisitor);
-
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -32,6 +27,11 @@ mongoose
   .catch((err) => {
     console.error("MongoDB connection error:", err);
   });
+
+app.use(cors());
+app.use(express.json());
+app.use(useragent.express());
+app.use(logVisitor);
 
 // Fix __dirname in ES Module scope
 const __filename = fileURLToPath(import.meta.url);
