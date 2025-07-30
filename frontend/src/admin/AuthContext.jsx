@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
-    if (token) setAdmin({ token }); // token is enough for basic auth
+    if (token) setAdmin({ token });
   }, []);
 
   const login = (token) => {
