@@ -56,7 +56,9 @@ export const addComment = async (req, res) => {
 
     const blog = await Blog.findById(blogId);
     if (!blog) {
-      return res.status(404).json({ success: false, message: "Blog not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Blog not found" });
     }
 
     blog.comments.push({ name, comment });
@@ -75,14 +77,18 @@ export const deleteComment = async (req, res) => {
 
     const blog = await Blog.findById(blogId);
     if (!blog) {
-      return res.status(404).json({ success: false, message: "Blog not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Blog not found" });
     }
 
     const commentIndex = blog.comments.findIndex(
       (c) => c._id.toString() === commentId
     );
     if (commentIndex === -1) {
-      return res.status(404).json({ success: false, message: "Comment not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Comment not found" });
     }
 
     blog.comments.splice(commentIndex, 1);

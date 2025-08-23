@@ -1,65 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ActlocalImage from "../assets/actlocal.png";
 import axios from "axios";
 
 function Blogs() {
   const [selectedBlog, setSelectedBlog] = useState(null);
-  // const [blogList, setBlogList] = useState([]);
+  const [blogList, setBlogList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:3000/api/blogs") // Replace with your actual backend URL
-  //     .then((res) => {
-  //       setBlogList(res.data);
-  //       setLoading(false);
-  //     })
-  //     .catch((err) => {
-  //       console.error("Error fetching blogs:", err);
-  //       setLoading(false);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("/api/blogs") // Replace with your actual backend URL
+      .then((res) => {
+        setBlogList(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching blogs:", err);
+        setLoading(false);
+      });
+  }, []);
 
-  // if (loading) return <p className="text-center">Loading blogs...</p>;
-
-  const blogList = [
-    {
-      title: "Mastering React in 2025",
-      summary:
-        "A complete guide to learning React with best practices, performance tips, and upcoming features in 2025.",
-      coverImage: "https://source.unsplash.com/featured/?reactjs,code",
-    },
-    {
-      title: "Why Tailwind CSS is Taking Over",
-      summary:
-        "Explore how Tailwind CSS simplifies styling, boosts productivity, and leads frontend trends in modern development.",
-      coverImage: "https://source.unsplash.com/featured/?tailwindcss,web",
-    },
-    {
-      title: "Top 10 VS Code Extensions for Developers",
-      summary:
-        "Supercharge your coding workflow with these essential VS Code extensions you might not know about.",
-      coverImage: "https://source.unsplash.com/featured/?vscode,code",
-    },
-    {
-      title: "Getting Started with MERN Stack",
-      summary:
-        "A beginner-friendly introduction to building full-stack apps using MongoDB, Express, React, and Node.js.",
-      coverImage: "https://source.unsplash.com/featured/?mern,development",
-    },
-    {
-      title: "How to Deploy Your App for Free in 2025",
-      summary:
-        "Learn the best platforms and strategies to deploy full-stack apps without spending a rupee.",
-      coverImage: "https://source.unsplash.com/featured/?deployment,cloud",
-    },
-    {
-      title: "AI in Everyday Coding: Myth or Future?",
-      summary:
-        "We discuss how tools like ChatGPT and GitHub Copilot are changing the way we write and debug code.",
-      coverImage: "https://source.unsplash.com/featured/?ai,coding",
-    },
-  ];
+  if (loading) return <p className="text-center">Loading blogs...</p>;
 
   // const response = axios.get("/api/blogs");
   // const blogs = response.data;
@@ -116,9 +77,10 @@ function Blogs() {
                 alt={selectedBlog.title}
                 className="w-full h-60 object-cover rounded-xl mb-4"
               />
-              <p className="whitespace-pre-line leading-relaxed text-gray-200">
+              <p className="whitespace-pre-line leading-relaxed ">
                 {selectedBlog.content}
               </p>
+              
             </>
           )}
         </div>
