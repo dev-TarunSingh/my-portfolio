@@ -15,7 +15,12 @@ export async function logVisitor(req, res, next) {
       req.ip;
 
     // Skip local/dev IPs
-    if (ip === "::1" || ip.startsWith("192.168.") || ip.startsWith("10.")) {
+    if (
+      ip === "::1" ||
+      ip.startsWith("192.168.") ||
+      ip.startsWith("10.") ||
+      req.headers["user-agent"]?.includes("Go-http-client")
+    ) {
       return next();
     }
 

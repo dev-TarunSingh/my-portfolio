@@ -8,24 +8,25 @@ export default function AdminSignup() {
 
   const signup = async (e) => {
     e.preventDefault();
-    console.log("Signing up admin:", { username, password });
-    if (!username || !password) {
-      alert("Username and password are required");
-      return;
-    }
-    const res = await fetch("/api/admin/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
+    alert("Ask Admin to create new account ;)");s
+    // console.log("Signing up admin:", { username, password });
+    // if (!username || !password) {
+    //   alert("Username and password are required");
+    //   return;
+    // }
+    // const res = await fetch("/api/admin/signup", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ username, password }),
+    // });
 
-    const data = await res.json();
-    if (res.ok) {
-      alert("Admin created. Now login.");
-      navigate("/admin/login");
-    } else {
-      alert(data.message || "Signup failed");
-    }
+    // const data = await res.json();
+    // if (res.ok) {
+    //   alert("Admin created. Now login.");
+    //   navigate("/admin/login");
+    // } else {
+    //   alert(data.message || "Signup failed");
+    // }
   };
 
   return (
