@@ -1,6 +1,21 @@
 import React, { useState, useEffect } from "react";
-import ActlocalImage from "../assets/actlocal.png";
 import axios from "axios";
+import { motion } from "framer-motion";
+
+const SAMPLE_BLOGS = [
+  {
+    title: "Design Systems for Scale",
+    summary: "How I built a scalable design system to accelerate frontend development.",
+    coverImage: "https://images.unsplash.com/photo-1527820775523-0038e0d3148f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=abc",
+    content: "Case study: component-driven development, tokens, and performance wins.",
+  },
+  {
+    title: "Optimizing React Performance",
+    summary: "Tactics and tools I used to reduce bundle size and improve TTFB.",
+    coverImage: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=def",
+    content: "Practical steps: code-splitting, memoization, and lazy loading.",
+  },
+];
 
 function Blogs() {
   const [selectedBlog, setSelectedBlog] = useState(null);
@@ -8,84 +23,60 @@ function Blogs() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // main section id: #blogs
+
     axios
-      .get("/api/blogs") // Replace with your actual backend URL
+      .get("/api/blogs")
       .then((res) => {
-        setBlogList(res.data);
+        setBlogList(res.data && res.data.length ? res.data : SAMPLE_BLOGS);
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching blogs:", err);
+        console.warn("Error fetching blogs; falling back to samples", err);
+        setBlogList(SAMPLE_BLOGS);
         setLoading(false);
       });
   }, []);
 
   if (loading) return <p className="text-center">Loading blogs...</p>;
 
-  // const response = axios.get("/api/blogs");
-  // const blogs = response.data;
-
   return (
-    <div className="min-h-screen text-black pt-20 relative z-0 overflow-hidden">
-      {/* MAIN BLOG GRID */}
-      <div className="px-5">
-        <h2 className="text-4xl font-bold text-center mb-10">Latest Blogs</h2>
-        <div className="flex flex-wrap justify-center gap-6">
+    <section id="blogs" className="py-16 scroll-mt-28">
+      <div className="container mx-auto px-6">
+        <motion.h2 initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }} className="text-4xl font-extrabold text-center mb-10">Latest Blogs</motion.h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogList.map((blog, idx) => (
-            <div
-              key={idx}
-              className="w-full sm:w-[48%] lg:w-[30%] p-4 rounded-4xl shadow-lg flex flex-col cursor-pointer hover:bg-blue-300 transition"
-              onClick={() => setSelectedBlog(blog)}
-            >
-              <div className="aspect-w-16 aspect-h-9 mb-4 ">
-                <img
-                  src={blog.coverImage}
-                  alt={blog.title}
-                  className="w-full h-full object-cover rounded-3xl"
-                />
+            <motion.article key={idx} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.05 }} whileHover={{ scale: 1.02 }} className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col">
+              <img loading="lazy" src={blog.coverImage} alt={blog.title} className="w-full h-44 object-cover" />
+              <div className="p-4 flex-1 flex flex-col">
+                <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
+                <p className="text-gray-600 mb-4 flex-1">{blog.summary}</p>
+                <div className="mt-auto flex items-center gap-3">
+                  <button onClick={() => setSelectedBlog(blog)} aria-label={`Read ${blog.title}`} className="px-4 py-2 bg-gradient-to-r from-brand-cyan to-brand-violet text-white rounded-full font-medium">Read Blog</button>
+                  <div className="text-sm text-gray-400">{blog.date || '•'}</div>
+                </div>
               </div>
-              <h3 className="text-2xl font-bold mb-2">{blog.title}</h3>
-              <p className="mb-4">{blog.summary}</p>
-              <button className="mt-auto inline-block rounded-3xl bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 transition duration-300">
-                Read Blog
-              </button>
-            </div>
+            </motion.article>
           ))}
         </div>
-      </div>
 
-      {/* POPUP PANEL (not fixed) */}
-      <div
-        className={`absolute left-0 right-0 bottom-0 z-10 transition-transform duration-500 ${
-          selectedBlog ? "translate-y-0" : "translate-y-full"
-        }`}
-      >
-        <div className="bg-white rounded-t-3xl p-6 max-h-[85vh] overflow-y-auto shadow-2xl border-t border-gray-700">
-          {selectedBlog && (
-            <>
-              <div className="flex justify-between items-center mb-4">
+        {selectedBlog && (
+          <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-6">
+            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="max-w-3xl bg-white rounded-2xl shadow-2xl p-6 overflow-y-auto max-h-[90vh]">
+              <div className="flex justify-between items-start mb-4">
                 <h3 className="text-2xl font-bold">{selectedBlog.title}</h3>
-                <button
-                  className="text-red-400 text-xl hover:text-red-300"
-                  onClick={() => setSelectedBlog(null)}
-                >
-                  ✕
-                </button>
+                <button aria-label="Close" className="text-gray-500" onClick={() => setSelectedBlog(null)}>✕</button>
               </div>
-              <img
-                src={selectedBlog.coverImage}
-                alt={selectedBlog.title}
-                className="w-full h-60 object-cover rounded-xl mb-4"
-              />
-              <p className="whitespace-pre-line leading-relaxed ">
-                {selectedBlog.content}
-              </p>
-              
-            </>
-          )}
-        </div>
+              <img loading="lazy" src={selectedBlog.coverImage} alt={selectedBlog.title} className="w-full h-56 object-cover rounded-xl mb-4" />
+              <div className="prose max-w-none">
+                <p>{selectedBlog.content}</p>
+              </div>
+            </motion.div>
+          </div>
+        )}
       </div>
-    </div>
+    </section>
   );
 }
 

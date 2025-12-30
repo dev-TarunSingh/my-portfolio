@@ -10,6 +10,7 @@ import About from "./components/About";
 import HireMe from "./components/Hireme";
 import Blogs from "./components/Blogs";
 import Background from "./components/Background";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 import AdminLogin from "./admin/Login";
 import AdminSignup from "./admin/Signup";
@@ -24,6 +25,32 @@ function App() {
   const location = useLocation();
 
   const isAdminRoute = location.pathname.startsWith("/admin");
+
+  React.useEffect(() => {
+    console.log('Active tab changed ->', activeTab);
+
+    // After activeTab changes, scroll to the section if present.
+    // Use a small timeout so React can mount the component into the DOM first.
+    setTimeout(() => {
+      const el = document.getElementById(activeTab);
+      if (el) {
+        console.log('Scrolling to element by id:', activeTab);
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+
+      // Fallback to scrolling main into view
+      const main = document.querySelector('main');
+      if (main) {
+        console.log('Element not found; scrolling main into view.');
+        main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+
+      // Final fallback: scroll to top
+      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 140);
+    }, 60);
+  }, [activeTab]);
 
   const renderComponent = () => {
     switch (activeTab) {
@@ -52,7 +79,9 @@ function App() {
       {!isAdminRoute && (
         <>
           <Navbar setActiveTab={setActiveTab} activeTab={activeTab} />
-          {renderComponent()}
+          <main className="pt-28">
+            <ErrorBoundary>{renderComponent()}</ErrorBoundary>
+          </main>
         </>
       )}
 

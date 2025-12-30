@@ -31,14 +31,14 @@ const gigs = [
 function HireMe({ setActiveTab }) {
   return (
     <>
-      <div className="p-5 pt-20 text-black min-h-screen">
+      <div id="hireme" className="p-5 pt-20 text-black min-h-screen scroll-mt-28">
         <h2 className="text-4xl font-bold text-center mb-10">Hire Me</h2>
         <div className="flex justify-center items-center">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {gigs.map((gig, index) => (
               <div
                 key={index}
-                className="lg:blur-none shadow-lg backdrop-blur-md p-5 rounded-4xl shadow-lg flex flex-col"
+                className="lg:blur-none backdrop-blur-md p-5 rounded-4xl shadow-lg flex flex-col"
               >
                 <div className="aspect-[4/3] mb-5">
                   {" "}

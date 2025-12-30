@@ -1,101 +1,56 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 function About() {
   return (
-    <>
-      <div className="flex flex-col items-center justify-center min-h-screen text-black p-5 pt-0 md:pt-5">
-        <h2 className="text-4xl font-bold mb-10 mt-20 text-bright-blue ">
-          About Me
-        </h2>
-        <div
-          className="p-5 rounded-3xl shadow-lg w-full max-w-4xl mb-5 
-        "
-        >
-          <h3 className="text-2xl font-bold mb-3 text-bright-blue ">
-            Experience
-          </h3>
-          <ul className="list-disc list-inside">
-            <li>
-              Penthara Technologies (Jan - Feb 2025)
-              <br />
-              On-Site
-              <br />– Worked on developing and optimizing web applications using
-              modern JavaScript frameworks.
-              <br />– Gained hands-on experience with cloud-based deployment and
-              CI/CD pipelines.
-            </li>
-            <li>
-              CodeAlpha (July - Sept 2024)
-              <br />
-              Online
-              <br />– Built and optimized Python-based projects, enhancing
-              problem-solving and algorithmic skills.
-              <br />– Developed automation scripts and small web applications.
-            </li>
-            <li>
-              Oasis Infobyte (Aug - Sept 2022)
-              <br />
-              Online
-              <br />– Created responsive web pages using HTML, CSS, JavaScript,
-              and Bootstrap.
-              <br />– Contributed to landing pages and improved UI/UX
-              understanding.
-              <br />– Gained knowledge of web development fundamentals and the
-              internet.
-            </li>
-          </ul>
-        </div>
-        <div className=" p-5 rounded-3xl shadow-lg w-full max-w-4xl mb-5 ">
-          <h3 className="text-2xl font-bold mb-3 text-bright-blue">
-            Education
-          </h3>
-          <ul className="list-disc list-inside">
-            <li>
-              Bachelor of Computer Applications (2022 - Present)
-              <br />
-              Chandigarh Group of Colleges, Mohali
-            </li>
-            <li>
-              12th (2021)
-              <br />
-              Army Public School No. 1, Roorkee
-            </li>
-            <li>
-              10th (2019)
-              <br />
-              Army Public School No. 1, Roorkee
-            </li>
-          </ul>
-        </div>
-        <div className=" p-5 rounded-3xl shadow-lg w-full max-w-4xl mb-5 ">
-          <h3 className="text-2xl font-bold mb-3 text-bright-blue ">
-            Achievements
-          </h3>
-          <ul className="list-disc list-inside">
-            <li>
-              Completed CS50 by Harvard
-              <br />
-              Gained in-depth knowledge of programming, data structures, and
-              algorithms.
-              <br />
-              Completed a final project demonstrating practical application of
-              learned skills.
-            </li>
-            <li>
-              First Place in Python PDF Password Cracking Competition
-              <br />
-              Demonstrated expertise in Python scripting, cryptography, and
-              ethical hacking concepts.
-            </li>
-            <li>
-              Completed AI Essentials by Google
-              <br />
-              Learned key AI concepts and their applications in various domains.
-            </li>
-          </ul>
+    <section id="about" className="py-20 bg-white scroll-mt-28">
+      <div className="container mx-auto px-6">
+        <motion.h2 initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }} className="text-4xl font-extrabold text-center mb-8 text-brand-violet">About Me</motion.h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <motion.article initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} transition={{delay:0.05}} className="bg-white shadow-lg rounded-2xl p-6">
+            <h3 className="text-xl font-semibold mb-3 text-brand-cyan">Experience</h3>
+            <ul className="space-y-3 text-gray-700">
+              <li>
+                <div className="font-medium">Penthara Technologies <span className="text-sm text-gray-500">• Jan - Feb 2025</span></div>
+                <div className="text-sm">Worked on optimizing web apps, CI/CD and deployments.</div>
+              </li>
+              <li>
+                <div className="font-medium">CodeAlpha <span className="text-sm text-gray-500">• Jul - Sep 2024</span></div>
+                <div className="text-sm">Built Python automation and web projects; improved performance.</div>
+              </li>
+              <li>
+                <div className="font-medium">Oasis Infobyte <span className="text-sm text-gray-500">• Aug - Sep 2022</span></div>
+                <div className="text-sm">Contributed to responsive UI and landing pages.</div>
+              </li>
+            </ul>
+          </motion.article>
+
+          <motion.article initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} transition={{delay:0.12}} className="bg-white shadow-lg rounded-2xl p-6">
+            <h3 className="text-xl font-semibold mb-3 text-brand-cyan">Education</h3>
+            <ul className="space-y-3 text-gray-700">
+              <li>
+                <div className="font-medium">BCA — Chandigarh Group of Colleges</div>
+                <div className="text-sm">2022 - present</div>
+              </li>
+              <li>
+                <div className="font-medium">12th — Army Public School No.1</div>
+                <div className="text-sm">2021</div>
+              </li>
+            </ul>
+          </motion.article>
+
+          <motion.article initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} transition={{delay:0.18}} className="bg-white shadow-lg rounded-2xl p-6">
+            <h3 className="text-xl font-semibold mb-3 text-brand-cyan">Achievements</h3>
+            <ul className="space-y-3 text-gray-700">
+              <li><div className="font-medium">CS50 — Harvard</div><div className="text-sm">Fundamentals of computer science and a strong final project.</div></li>
+              <li><div className="font-medium">Python PDF Competition — 1st Place</div><div className="text-sm">Demonstrated advanced scripting skills.</div></li>
+              <li><div className="font-medium">AI Essentials — Google</div><div className="text-sm">Introductory AI foundation coursework.</div></li>
+            </ul>
+          </motion.article>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "../assets/taruncodesLogo.webp";
+import { motion } from "framer-motion";
 
 function Navbar({ setActiveTab, activeTab }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +26,7 @@ function Navbar({ setActiveTab, activeTab }) {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 shadow-md z-50 px-4 py-3">
+    <motion.nav initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.45 }} className="fixed top-4 left-4 right-4 z-50 rounded-xl bg-white/60 backdrop-blur-md border border-white/10 shadow-lg px-4 py-3" role="navigation" aria-label="Main navigation">
       {/* Logo + Hamburger */}
       <div
         className={`flex ${
@@ -55,11 +56,22 @@ function Navbar({ setActiveTab, activeTab }) {
             {tabs.map((tab) => (
               <li key={tab.key}>
                 <button
-                  onClick={() => setActiveTab(tab.key)}
+                  onClick={() => {
+                    setActiveTab(tab.key);
+                    console.log('Navbar click:', tab.key);
+                    const el = document.getElementById(tab.key);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    else {
+                      const main = document.querySelector('main');
+                      if (main) main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      else setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 140);
+                    }
+                  }}
+                  aria-current={activeTab === tab.key ? 'page' : undefined}
                   className={`px-4 py-2 rounded-full font-medium transition ${
                     activeTab === tab.key
-                      ? "bg-blue-600 text-white"
-                      : "bg-white text-black hover:bg-blue-200"
+                      ? "bg-gradient-to-r from-brand-cyan to-brand-violet text-white shadow"
+                      : "bg-white text-gray-800 hover:bg-gray-100"
                   }`}
                 >
                   {tab.name}
@@ -88,11 +100,19 @@ function Navbar({ setActiveTab, activeTab }) {
                 onClick={() => {
                   setActiveTab(tab.key);
                   setIsOpen(false);
+                  console.log('Navbar mobile click:', tab.key);
+                  const el = document.getElementById(tab.key);
+                  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  else {
+                    const main = document.querySelector('main');
+                    if (main) main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    else setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 140);
+                  }
                 }}
                 className={`px-4 py-2 rounded-full font-medium transition whitespace-nowrap ${
                   activeTab === tab.key
-                    ? "bg-gray-300 text-black"
-                    : "bg-white text-black hover:bg-gray-200"
+                    ? "bg-gradient-to-r from-brand-cyan to-brand-violet text-white"
+                    : "bg-white text-gray-800 hover:bg-gray-100"
                 }`}
               >
                 {tab.name}
@@ -101,7 +121,7 @@ function Navbar({ setActiveTab, activeTab }) {
           ))}
         </ul>
       )}
-    </nav>
+    </motion.nav>
   );
 }
 

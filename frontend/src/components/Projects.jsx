@@ -68,52 +68,52 @@ const projects = [
   },
 ];
 
+import { motion } from "framer-motion";
+
 function Projects() {
   return (
-    <>
-      <div className="p-5 pt-20 text-black">
-        <h2 className="text-4xl font-bold text-center mb-10">Projects</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className=" p-5 rounded-4xl shadow-lg flex flex-col lg:blur-none shadow-lg backdrop-blur-md"
-            >
-              <div className="aspect-w-16 aspect-h-9 mb-5">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover rounded-3xl"
-                />
-              </div>
-              <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-              <p className="mb-3">{project.description}</p>
-              {project.features && (
-                <ul className="list-disc list-inside mb-3">
-                  {project.features.map((feature, idx) => (
-                    <li key={idx}>{feature}</li>
-                  ))}
-                </ul>
-              )}
-              <p className="font-semibold mb-4">
-                Technologies Used: {project.technologies}
-              </p>
+    <section id="projects" className="py-16 scroll-mt-28">
+      <div className="container mx-auto px-6">
+        <motion.h2 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-4xl font-extrabold text-center mb-10">Projects</motion.h2>
 
-              {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-auto text-center inline-block rounded-3xl shadow-2xl bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 transition duration-300"
-                >
-                  View Project
-                </a>
-              )}
-            </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.article key={index} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.05 }} whileHover={{ y: -6 }} className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col">
+              <div className="relative">
+                <img loading="lazy" src={project.image} alt={project.title} className="w-full h-48 object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                  <div className="flex gap-2">
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1 rounded-full bg-white/10 text-white backdrop-blur-sm">Live ↗</a>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1 rounded-full bg-white/10 text-white backdrop-blur-sm">Code</a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 flex-1 flex flex-col">
+                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                <p className="text-gray-600 mb-4 flex-1">{project.description}</p>
+
+                {project.features && (
+                  <ul className="mb-3 text-sm text-gray-700 space-y-1">
+                    {project.features.slice(0, 3).map((f, i) => (
+                      <li key={i}>• {f}</li>
+                    ))}
+                  </ul>
+                )}
+
+                <div className="mt-4 flex items-center justify-between">
+                  <div className="text-sm text-gray-500">{project.technologies}</div>
+                  <div className="flex gap-2">
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1 rounded-full bg-gradient-to-r from-brand-cyan to-brand-violet text-white text-sm">View</a>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1 rounded-full border text-sm">Details</a>
+                  </div>
+                </div>
+              </div>
+            </motion.article>
           ))}
         </div>
       </div>
-    </>
+    </section>
   );
 }
 
