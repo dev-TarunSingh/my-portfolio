@@ -39,11 +39,11 @@ function Home() {
               className="flex flex-wrap gap-4"
             >
               <a
-                href="mailto:tarun@example.com?subject=Inquiry%20about%20project"
+                href="mailto:tarunsinghchauhan75@google.com?subject=Inquiry%20about%20project"
                 aria-label="Book a discovery call"
                 className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-brand-cyan to-brand-violet text-white font-semibold rounded-full shadow-lg hover:opacity-95"
               >
-                Book a Discovery Call
+                Mail a Discovery Call
               </a>
 
               <a
