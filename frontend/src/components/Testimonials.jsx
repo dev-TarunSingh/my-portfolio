@@ -2,22 +2,23 @@ import React from "react";
 
 const testimonials = [
   {
-    name: "A. Singh — Founder",
-    role: "Founder, Acme Co",
+    name: "karan Sethi — Founder",
+    // role: "Founder, Acme Co",
     quote:
-      "Tarun turned our idea into a polished product in 6 weeks, increased conversions by 28%.",
+      "Tarun turned our idea into a polished product in 6 weeks, increased conversions by 28% and gained new clients.",
   },
   {
     name: "R. Patel — CTO",
-    role: "CTO, BetaApps",
+    // role: "CTO, BetaApps",
     quote:
       "Reliable, proactive, and focused on user experience — great partner for retainers.",
   },
   {
     name: "S. Kumar — Product Lead",
-    role: "Product Lead, StartX",
+    // role: "Product Lead, StartX",
     quote: "Delivered high-quality front-end work and improved app performance.",
   },
+  
 ];
 
 export default function Testimonials() {
