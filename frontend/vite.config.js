@@ -12,4 +12,15 @@ export default defineConfig({
       ui: "/src/components/ui",
     },
   },
+  server: {
+    proxy: {
+      // Forward API requests to backend server during development
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+        secure: false,
+        ws: false,
+      },
+    },
+  },
 });

@@ -8,7 +8,7 @@ export default function AdminSignup() {
 
   const signup = async (e) => {
     e.preventDefault();
-    alert("Ask Admin to create new account ;)");s
+    alert("Ask Admin to create new account ;)");
     // console.log("Signing up admin:", { username, password });
     // if (!username || !password) {
     //   alert("Username and password are required");
@@ -31,8 +31,8 @@ export default function AdminSignup() {
 
   return (
     <div className="min-h-screen flex items-center justify-center ">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 space-y-6 border border-red-200">
-        <h2 className="text-2xl font-semibold text-orange-600 text-center">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 space-y-6 border border-gray-100">
+        <h2 className="text-2xl font-semibold text-brand-violet text-center">
           Admin Signup
         </h2>
         <form onSubmit={signup} className="space-y-4">
@@ -42,7 +42,7 @@ export default function AdminSignup() {
               type="text"
               placeholder="Enter username"
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-cyan"
               required
             />
           </div>
@@ -52,13 +52,13 @@ export default function AdminSignup() {
               type="password"
               placeholder="Enter password"
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-cyan"
               required
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 rounded-xl transition duration-200"
+            className="w-full inline-flex justify-center items-center bg-gradient-to-r from-brand-cyan to-brand-violet text-white py-2 rounded-xl transition duration-200"
           >
             Sign Up
           </button>
@@ -67,7 +67,7 @@ export default function AdminSignup() {
           Already have an admin account?{" "}
           <Link
             to="/admin/login"
-            className="text-orange-600 font-medium hover:underline"
+            className="text-brand-cyan font-medium hover:underline"
           >
             Login here
           </Link>

@@ -35,19 +35,22 @@ const VisitorAnalytics = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [allVisitorsRes, perDayRes] = await Promise.all([
+        const [allVisitorsRes, weekRes] = await Promise.all([
           axios.get("/api/admin/dashboard", {
             headers: { Authorization: `Bearer ${admin?.token}` },
           }),
-          axios.get("/api/visitors-per-day", {
+          axios.get("/api/visitors-week?days=7", {
             headers: { Authorization: `Bearer ${admin?.token}` },
           }),
         ]);
 
         if (allVisitorsRes.data.success)
-          setVisitors(allVisitorsRes.data.visitorDetails || []);
-        if (perDayRes.data.success)
-          setVisitorsPerDay(perDayRes.data.data || []);
+          setVisitors(allVisitorsRes.data.visitorDetails || []); // still show overall summary
+
+        if (weekRes.data.success) {
+          setVisitors(weekRes.data.visitors || []);
+          setVisitorsPerDay(weekRes.data.perDay || []);
+        }
       } catch (err) {
         console.error("Error fetching visitor data:", err);
       } finally {
@@ -55,8 +58,35 @@ const VisitorAnalytics = () => {
       }
     };
 
-    fetchData();
+    if (admin?.token) fetchData();
   }, [admin]);
+
+  // Prune button handler
+  const handlePrune = async () => {
+    if (!window.confirm("Delete visitor logs older than 7 days? This cannot be undone.")) return;
+    try {
+      const res = await axios.delete("/api/admin/prune-visitors", {
+        headers: { Authorization: `Bearer ${admin?.token}` },
+        data: { days: 7 },
+      });
+      if (res.data.success) {
+        alert(`Deleted ${res.data.deleted} old visitor logs`);
+        // Refresh data
+        const weekRes = await axios.get("/api/visitors-week?days=7", {
+          headers: { Authorization: `Bearer ${admin?.token}` },
+        });
+        if (weekRes.data.success) {
+          setVisitors(weekRes.data.visitors || []);
+          setVisitorsPerDay(weekRes.data.perDay || []);
+        }
+      } else {
+        alert("Failed to prune logs");
+      }
+    } catch (err) {
+      console.error("Prune request failed:", err);
+      alert("Prune request failed. See console.");
+    }
+  };
 
   if (loading)
     return (
@@ -88,11 +118,11 @@ const VisitorAnalytics = () => {
     <div className="min-h-screen flex flex-col lg:flex-row bg-gray-100">
       {/* Sidebar */}
       <aside className="w-full lg:w-64 bg-white shadow-md p-6">
-        <h1 className="text-2xl font-bold mb-6 text-orange-600">Admin Panel</h1>
+        <h1 className="text-2xl font-bold mb-6 text-brand-violet">Admin Panel</h1>
         <nav className="space-y-4">
           <Link
             to="/admin/dashboard"
-            className="block text-gray-700 hover:text-orange-600"
+            className="block text-gray-700 hover:text-brand-cyan"
           >
             📊 Dashboard
           </Link>
@@ -123,18 +153,32 @@ const VisitorAnalytics = () => {
           Visitor Analytics 👀
         </h2>
 
-        {/* Stat Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-          <StatCard title="Total Visitors" value={totalVisitors} emoji="🌐" />
-          <StatCard title="Unique Visitors" value={uniqueVisitors} emoji="🆔" />
-          <StatCard title="Today's Visitors" value={todayVisitors} emoji="📅" />
+        {/* Stat Cards + Prune action */}
+        <div className="flex items-center justify-between mb-6 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 flex-1">
+            <StatCard title="Total Visitors" value={totalVisitors} emoji="🌐" />
+            <StatCard title="Unique Visitors" value={uniqueVisitors} emoji="🆔" />
+            <StatCard title="Today's Visitors" value={todayVisitors} emoji="📅" />
+          </div>
+          <div className="ml-4">
+            <button onClick={handlePrune} className="inline-flex items-center px-4 py-2 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-violet text-white">Prune Old Logs</button>
+          </div>
         </div>
 
         {/* Visitors Per Day Chart */}
         <div className="bg-white rounded-xl shadow p-6 mb-8">
-          <h3 className="text-xl font-bold mb-4">Visitors Per Day 📈</h3>
+          <h3 className="text-xl font-bold mb-4">Visitors This Week 📈</h3>
           <Bar
-            data={perDayChart}
+            data={{
+              labels: visitorsPerDay.map((v) => v._id),
+              datasets: [
+                {
+                  label: "Visitors 👥",
+                  data: visitorsPerDay.map((v) => v.count),
+                  backgroundColor: "rgba(6,182,212,0.9)",
+                },
+              ],
+            }}
             options={{
               responsive: true,
               plugins: { legend: { position: "top" } },
@@ -181,7 +225,7 @@ const StatCard = ({ title, value, emoji }) => (
   <div className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition cursor-pointer flex flex-col items-center justify-center">
     <div className="text-4xl mb-2">{emoji}</div>
     <h3 className="text-lg font-semibold text-gray-700">{title}</h3>
-    <p className="text-3xl font-bold text-orange-500">{value}</p>
+    <p className="text-3xl font-bold text-brand-cyan">{value}</p>
   </div>
 );
 

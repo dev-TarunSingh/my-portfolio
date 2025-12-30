@@ -31,4 +31,5 @@ Recent fixes (Dec 30, 2025)
 - Reverted `Projects`, `Blogs` and `Testimonials` to use the same background as the Home section (removed white backgrounds and borders) to maintain a consistent site background per preference.
 - Modernized several pages and components: `About`, `Blogs`, `Contact`, and `Skills` (Framer Motion entrances, updated cards, accessible CTA buttons, and performance improvements).
 - `Blogs` now supports server-side content at `/api/blogs`, and falls back to local sample posts when the API is unavailable.
+- Server: added weekly pruning and a yearly prune safeguard (default 365 days) to automatically delete old visitor logs — configurable via `VISITOR_RETENTION_DAYS` and `VISITOR_YEARLY_RETENTION_DAYS` environment variables.
 - Fixed navigation issues: added `id="contact"` to contact section and added a scroll-on-activeTab `useEffect` in `src/App.jsx` to ensure the app scrolls to a section after the component mounts (fixes cases where the element isn't present at the time of the navbar click).

@@ -56,11 +56,11 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-gray-100">
       <aside className="w-full lg:w-64 bg-white shadow-md p-6">
-        <h1 className="text-2xl font-bold mb-6 text-orange-600">Admin Panel</h1>
+        <h1 className="text-2xl font-bold mb-6 text-brand-violet">Admin Panel</h1>
         <nav className="space-y-4">
           <Link
             to="/admin/dashboard"
-            className="block text-gray-700 hover:text-orange-600"
+            className="block text-gray-700 hover:text-brand-cyan"
           >
             Dashboard
           </Link>
@@ -78,7 +78,7 @@ const AdminDashboard = () => {
           </Link>
           <button
             onClick={handleLogout}
-            className="mt-10 w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
+            className="mt-10 w-full inline-flex items-center justify-center bg-gradient-to-r from-brand-cyan to-brand-violet text-white py-2 px-4 rounded"
           >
             Logout
           </button>
@@ -122,7 +122,7 @@ const DashboardCard = ({ title, value, onClick }) => (
     className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition cursor-pointer"
   >
     <h3 className="text-lg font-bold text-gray-700 mb-2">{title}</h3>
-    <p className="text-3xl font-bold text-orange-500">{value}</p>
+    <p className="text-3xl font-bold text-brand-cyan">{value}</p>
   </div>
 );
 

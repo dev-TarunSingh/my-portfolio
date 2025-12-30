@@ -1,6 +1,6 @@
 // routes/adminAuth.js
 import express from "express";
-import { login, signup, showDashboard } from "../controller/adminController.js";
+import { login, signup, showDashboard, pruneVisitors, adminGetBlogs, adminDeleteBlog, adminDeleteComment } from "../controller/adminController.js";
 import { authenticate } from "../middlewares/auth.js";
 
 const router = express.Router();
@@ -12,5 +12,13 @@ router.post("/signup", signup);
 router.post("/login", login);
 
 router.get("/dashboard", authenticate, showDashboard);
+
+// Admin blog management
+router.get("/blogs", authenticate, adminGetBlogs);
+router.delete("/blogs/:id", authenticate, adminDeleteBlog);
+router.delete("/blogs/:blogId/comments/:commentId", authenticate, adminDeleteComment);
+
+// Admin-triggered prune endpoint to delete visitors older than `days` (default 7)
+router.delete("/prune-visitors", authenticate, pruneVisitors);
 
 export default router;

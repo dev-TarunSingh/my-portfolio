@@ -64,11 +64,11 @@ const AdminBlogs = () => {
     <div className="min-h-screen flex flex-col lg:flex-row bg-gray-100">
       {/* Sidebar */}
       <aside className="w-full lg:w-64 bg-white shadow-md p-6">
-        <h1 className="text-2xl font-bold mb-6 text-orange-600">Admin Panel</h1>
+        <h1 className="text-2xl font-bold mb-6 text-brand-violet">Admin Panel</h1>
         <nav className="space-y-4">
           <Link
             to="/admin/dashboard"
-            className="block text-gray-700 hover:text-orange-600"
+            className="block text-gray-700 hover:text-brand-cyan"
           >
             📊 Dashboard
           </Link>
@@ -86,7 +86,7 @@ const AdminBlogs = () => {
           </Link>
           <button
             onClick={logout}
-            className="mt-10 w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
+            className="mt-10 w-full inline-flex items-center justify-center bg-gradient-to-r from-brand-cyan to-brand-violet text-white py-2 px-4 rounded"
           >
             Logout
           </button>
@@ -155,7 +155,7 @@ const AdminBlogs = () => {
                     onClick={() =>
                       (window.location.href = `/admin/blogs/edit/${blog._id}`)
                     }
-                    className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded"
+                    className="flex-1 inline-flex items-center justify-center bg-gradient-to-r from-brand-cyan to-brand-violet hover:opacity-95 text-white py-2 rounded"
                   >
                     ✏️ Edit
                   </button>

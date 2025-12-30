@@ -5,8 +5,8 @@ const VisitorSchema = new mongoose.Schema({
   path: String,
   browser: String,
   os: String,
-  time: Date,
+  time: { type: Date, default: Date.now },
 });
 
-const Visitor = mongoose.model(" Visitor", VisitorSchema);
+const Visitor = mongoose.model("Visitor", VisitorSchema);
 export default Visitor;

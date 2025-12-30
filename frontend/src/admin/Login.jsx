@@ -10,27 +10,40 @@ export default function AdminLogin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("/api/admin/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
+    try {
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
 
-    console.log("hogya wo toh");
+      console.log("Login response status:", res.status);
 
-    const data = await res.json();
-    if (res.ok) {
-      login(data.token);
-      navigate("/admin/dashboard");
-    } else {
-      alert(data.message || "Login failed");
+      let data = null;
+      try {
+        data = await res.json();
+      } catch (err) {
+        // Response had no valid JSON (e.g., 404 or empty body)
+        console.warn('Failed to parse login response JSON', err);
+      }
+
+      if (res.ok && data?.token) {
+        login(data.token);
+        navigate("/admin/dashboard");
+      } else {
+        const msg = data?.message || `Login failed (${res.status})`;
+        alert(msg);
+      }
+    } catch (err) {
+      console.error("Network/login error:", err);
+      alert("Network error while logging in. Make sure backend is running on port 3000.");
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center  px-4">
-      <div className="w-full max-w-md bg-white border border-red-200 rounded-2xl shadow-lg p-8 space-y-6">
-        <h2 className="text-3xl font-semibold text-orange-600 text-center">
+      <div className="w-full max-w-md bg-white border border-gray-100 rounded-2xl shadow-lg p-8 space-y-6">
+        <h2 className="text-3xl font-semibold text-brand-violet text-center">
           Admin Login
         </h2>
 
@@ -41,7 +54,7 @@ export default function AdminLogin() {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+              className="w-full px-4 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan"
               placeholder="Enter your username"
               required
             />
@@ -53,7 +66,7 @@ export default function AdminLogin() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+              className="w-full px-4 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan"
               placeholder="Enter your password"
               required
             />
@@ -61,7 +74,7 @@ export default function AdminLogin() {
 
           <button
             type="submit"
-            className="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 rounded-xl transition-all duration-200 text-sm font-medium"
+            className="w-full inline-flex justify-center items-center bg-gradient-to-r from-brand-cyan to-brand-violet hover:opacity-95 text-white py-2 rounded-xl transition-all duration-200 text-sm font-medium"
           >
             Login
           </button>

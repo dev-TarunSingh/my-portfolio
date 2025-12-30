@@ -1,9 +1,12 @@
 // middleware/auth.js
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
-const SECRET = process.env.SECRET;
+// Prefer JWT_SECRET; fall back to SECRET for compatibility
+const SECRET = process.env.JWT_SECRET || process.env.SECRET;
+if (!SECRET) console.warn("Auth middleware: JWT secret not set (JWT_SECRET/SECRET)");
+
+import jwt from 'jsonwebtoken';
 
 export function authenticate(req, res, next) {
   const token = req.headers.authorization?.split(" ")[1]; // Bearer TOKEN
@@ -14,6 +17,7 @@ export function authenticate(req, res, next) {
     req.admin = decoded;
     next();
   } catch (err) {
+    console.error('Auth verify error:', err);
     res.status(403).json({ message: "Forbidden" });
   }
 }
