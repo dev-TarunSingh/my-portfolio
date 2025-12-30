@@ -30,7 +30,7 @@ export default function Testimonials() {
           {testimonials.map((t, i) => (
             <div key={i} className="p-6 bg-white rounded-2xl shadow">
               <div className="text-xl font-medium mb-3">"{t.quote}"</div>
-              <div className="text-sm text-gray-500">{t.name} — {t.role}</div>
+              <div className="text-sm text-gray-500">{t.name}  {t.role}</div>
             </div>
           ))}
         </div>
